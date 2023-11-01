@@ -45,6 +45,5 @@ namespace HotelProject.DataAccessLayer.Repositories
             _context.SaveChanges();
         }
     }
-    {
-    }
+   
 }
