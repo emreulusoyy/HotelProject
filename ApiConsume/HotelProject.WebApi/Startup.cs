@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OtelProject.WebApi
+namespace HotelProject.WebApi
 {
     public class Startup
     {
@@ -31,18 +31,33 @@ namespace OtelProject.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<Context>();
-            services.AddScoped<IStraffDal, EfStaffDal>();
-            services.AddScoped<IStaffService, StaffManager>();
 
-            services.AddScoped<IRoomDal, EfRoomDal>();
-            services.AddScoped<IRoomService, RoomManager>();
+            services.AddScoped<IStraffDal,EfStaffDal>();
+            services.AddScoped<IStaffService,StaffManager>();
 
-            services.AddScoped<ISubscribeDal, EfSubscibeDal>();
-            services.AddScoped<ISubscribeService, SubscribeManager>();
-            services.AddControllers();
+			services.AddScoped<IServiceDal, EfServiceDal>();
+			services.AddScoped<IServiceService, ServiceManager>();
+
+			services.AddScoped<IRoomDal, EfRoomDal>();
+			services.AddScoped<IRoomService, RoomManager>();
+
+			services.AddScoped<ISubscribeDal, EfSubscibeDal>();
+			services.AddScoped<ISubscribeService, SubscribeManager>();
+
+			services.AddScoped<ITestimonialDal, EfTestimonialDal>();
+			services.AddScoped<ITestimonialService, TestimonialManager>();
+
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("OtelApiCors", opts =>
+                {
+                    opts.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
+			services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "OtelProject.WebApi", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelProject.WebApi", Version = "v1" });
             });
         }
 
@@ -53,10 +68,11 @@ namespace OtelProject.WebApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OtelProject.WebApi v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HotelProject.WebApi v1"));
             }
 
             app.UseRouting();
+            app.UseCors("OtelApiCors");
 
             app.UseAuthorization();
 

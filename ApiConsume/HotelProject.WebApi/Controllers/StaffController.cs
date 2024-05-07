@@ -3,7 +3,7 @@ using HotelProject.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace OtelProject.WebApi.Controllers
+namespace HotelProject.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,19 +24,21 @@ namespace OtelProject.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddStaff(Staff staf)
+        public IActionResult AddStaff(Staff staff)
         {
-            _staffService.TInsert(staf);
+            _staffService.TInsert(staff);
             return Ok();
         }
 
-        [HttpDelete]
+
+        [HttpDelete("{id}")]
         public IActionResult DeleteStaff(int id)
         {
             var values = _staffService.TGetByID(id);
-            _staffService.TDelete(values); 
+            _staffService.TDelete(values);
             return Ok();
         }
+
 
         [HttpPut]
         public IActionResult UpdateStaff(Staff staff)
@@ -45,7 +47,7 @@ namespace OtelProject.WebApi.Controllers
             return Ok();
         }
 
-        [HttpGet("{id})")]
+        [HttpGet("{id}")]
         public IActionResult GetStaff(int id)
         {
             var values = _staffService.TGetByID(id);

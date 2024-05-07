@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OtelProject.WebApi
+namespace HotelProject.WebApi
 {
     public class Program
     {
