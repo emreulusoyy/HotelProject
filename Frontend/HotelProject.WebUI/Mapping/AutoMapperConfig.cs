@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using HotelProject.DtoLayer.Dtos.RoomDto;
 using HotelProject.EntityLayer.Concrete;
+using HotelProject.WebUI.Dtos.ServiceDto;
 
 namespace HotelProject.WebUI.Mapping
 {
@@ -8,10 +8,10 @@ namespace HotelProject.WebUI.Mapping
     {
         public AutoMapperConfig()
         {
-            CreateMap<RoomAddDto, Room>();
-            CreateMap<Room, RoomAddDto>();
+            CreateMap<ResultServiceDto, Service>().ReverseMap();
+            CreateMap<UpdateServiceDto, Service>().ReverseMap();
+            CreateMap<CreateServiceDto, Service>().ReverseMap();
 
-            CreateMap<UpdateRoomDto, Room>().ReverseMap();
         }
     }
 }
