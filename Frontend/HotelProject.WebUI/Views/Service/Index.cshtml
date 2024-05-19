@@ -8,6 +8,7 @@
     <tr>
         <th>#</th>
         <th>Hizmet Başlığı</th>
+        <th>Hizmet Aççıklaması</th>
         <th>Sil</th>
         <th>Güncelle</th>
 
@@ -17,6 +18,7 @@
         <tr>
             <th>@x.ServiceID</th>
             <td>@x.Title</td>
+            <td>@x.Description</td>
             <td><a href="/Service/DeleteService/@x.ServiceID" class="btn btn-danger">Sil</a></td>
             <td><a href="/Service/UpdateService/@x.ServiceID" class="btn btn-success">Güncelle</a></td>
         </tr>
